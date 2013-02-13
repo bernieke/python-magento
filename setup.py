@@ -17,5 +17,5 @@ setup(
     url='http://pypi.python.org/pypi/python-magento/',
     license='LICENSE.md',
     description='A Python wrapper to Magento\'s XML-RPC API.',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
 )
