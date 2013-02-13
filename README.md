@@ -11,12 +11,22 @@ from magento import MagentoAPI
 magento = MagentoAPI("magentohost.com", 80, "test_api_user", "test_api_key")
 
 magento.help() # Prints out all resources discovered and available
-magento.cart.help() # 'cart' is a resource. Prints a description of all 'cart'
-                    # methods available to you.
+cart: create, info, license, order, totals
+cart_coupon: add, remove
+... (a bunch of other resources)
+sales_order: addComment, cancel, hold, info, list, unhold
+... (a bunch of other resources)
 
-magento.sales_order.help() # 'sales_order' is a resource. 'list' is a method. 
+magento.sales_order.help() # 'sales_order' is a resource.
+sales_order: Order API
+  - addComment: Add comment to order
+  - cancel: Cancel order
+  - hold: Hold order
+  - info: Retrieve order information
+  - list: Retrieve list of orders by filters
+  - unhold: Unhold order
 
-# Let's add up sales subtotals!
+# Let's list sales and order their subtotals!
 orders = magento.sales_order.list()
 subtotals = [order["subtotal"] for order in orders]
 revenue = sum(subtotals)
