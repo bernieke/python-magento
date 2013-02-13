@@ -1,10 +1,11 @@
 # python-magento
 
-This is a simple Python interface to Magento's XML-RPC API.
+This is a simple Python interface to Magento's XML-RPC API. The API discovers and
+makes all of Magento's API methods available to you by discovery.
 
 ## Usage
 
-```
+```python
 from magento import MagentoAPI
 
 magento = MagentoAPI("magentohost.com", 80, "test_api_user", "test_api_key")
@@ -28,7 +29,7 @@ json_description_of_possible_resource_exceptions = magento.resource_faults("sale
 
 The API discovers and makes all of Magento's API methods available to you by
 discovery. The best way to learn how to use the API is to play around with it in
-a Python shell and refer back to the Magento docs.n
+a Python shell and refer back to the [Magento API documentation](http://www.magentocommerce.com/api/soap/introduction.html).
 
 ## Quick IPython Shell
 
@@ -47,7 +48,6 @@ Here's how to launch it:
 
 ```
 > magento-ipython-shell mymagentoserver.com 80 test_api_user test_api_key
-
 
 -- magento-ipython-shell -----------------
 Connecting to 'http://localhost.com:8888/magento/api/xmlrpc'
