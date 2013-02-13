@@ -19,7 +19,7 @@ setup(
         ]
     },
     url='https://github.com/voberoi/python-magento',
-    license=open('LICENSE.md').read(),
+    license="MIT License",
     description='A Python wrapper to Magento\'s XML-RPC API.',
     long_description=open('README.rst').read(),
     classifiers=(
