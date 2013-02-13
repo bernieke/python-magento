@@ -15,7 +15,6 @@ magento.help() # Prints out all resources discovered and available.
 # cart_coupon: add, remove
 # ... (a bunch of other resources)
 # sales_order: addComment, cancel, hold, info, list, unhold
-# ... (a bunch of other resources)
 
 magento.sales_order.help() # 'sales_order' is a resource.
 # sales_order: Order API
