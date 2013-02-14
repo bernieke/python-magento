@@ -56,7 +56,7 @@ you need. This is just a slightly nicer way to get started mucking around.
 Here's how to launch it:
 
 ```
-> magento-ipython-shell mymagentoserver.com 80 test_api_user test_api_key
+> magento-ipython-shell localhost.com 8888 api_user api_key
 
 -- magento-ipython-shell -----------------
 Connecting to 'http://localhost.com:8888/magento/api/xmlrpc'
