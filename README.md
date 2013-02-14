@@ -42,7 +42,7 @@ a Python shell and refer back to the [Magento API documentation](http://www.mage
 
 ## Quick IPython Shell
 
-The Magento API is massive and difficult to use. If you need to use it in some 
+The Magento API is massive and takes effort to grok. If you need to use it in some 
 production capacity, you'll want to jump into a shell frequently and muck around
 with inputs and stare at outputs.
 
