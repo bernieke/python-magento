@@ -21,13 +21,17 @@ def main():
     parser.add_argument("port", type=int, help="The Magento server port.")
     parser.add_argument("api_user", help="The API user to log in as.")
     parser.add_argument("api_key", help="The API key to log in with.")
+    parser.add_argument("-v", "--verbose", action="store_true", 
+                        help="Set the XML-RPC client to verbose.")
+        
     args = parser.parse_args()
 
     endpoint = {
         "host": args.host,
         "port": args.port,
         "api_user": args.api_user,
-        "api_key": args.api_key
+        "api_key": args.api_key,
+        "verbose": args.verbose
     }
 
     url = "http://%s:%d" % (args.host, args.port) + MagentoAPI.PATH

@@ -5,7 +5,7 @@ __all__ = ["MagentoAPI"]
 class MagentoAPI(object):
     PATH = "/magento/api/xmlrpc"
 
-    def __init__(self, host, port, api_user, api_key, path=None):
+    def __init__(self, host, port, api_user, api_key, path=None, verbose=False):
         """Logs the client into Magento's API and discovers methods available
         to it. Throws an exception if logging in fails."""
 
@@ -13,7 +13,7 @@ class MagentoAPI(object):
             path = MagentoAPI.PATH
 
         uri = "http://%s:%s" % (host, str(port)) + path
-        self._client = xmlrpclib.ServerProxy(uri)
+        self._client = xmlrpclib.ServerProxy(uri, verbose=verbose)
         self._session_id = self._client.login(api_user, api_key)
         self._discover()
 
@@ -33,6 +33,11 @@ class MagentoAPI(object):
         """Returns the XML-RPC client, an xmlrpclib.ServerProxy (see Python docs)
         instance that's connected to the Magento API. Nice for debugging."""
         return self._client
+
+    def _get_session_id(self):
+        """Returns the cart session ID. You'll need it for debugging if you're
+        sending calls through the client you receive by calling _get_client."""
+        return self._session_id
 
     def __getattr__(self, name):
         """Intercepts valid Magento paths (e.g. "cart.create") to return functions
@@ -92,7 +97,7 @@ class MagentoResource(object):
     def _get_method_call(self, method_name):
         path = ".".join([self._name, method_name])
         def call_method(*args, **kwargs):
-            return self._client.call(self._session_id, path, *args)
+            return self._client.call(self._session_id, path, args)
         return call_method
 
     def help(self):
