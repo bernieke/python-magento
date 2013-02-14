@@ -25,7 +25,7 @@ magento.sales_order.help() # 'sales_order' is a resource.
 #   - list: Retrieve list of orders by filters
 #   - unhold: Unhold order
 
-# Let's list sales and order their subtotals!
+# Let's list sales and add their subtotals!
 orders = magento.sales_order.list()
 subtotals = [order["subtotal"] for order in orders]
 revenue = sum(subtotals)
