@@ -14,13 +14,22 @@ Usage
 
     magento = MagentoAPI("magentohost.com", 80, "test_api_user", "test_api_key")
 
-    magento.help() # Prints out all resources discovered and available
-    magento.cart.help() # 'cart' is a resource. Prints a description of all 'cart'
-                        # methods available to you.
+    magento.help() # Prints out all resources discovered and available.
+    # cart: create, info, license, order, totals
+    # cart_coupon: add, remove
+    # ... (a bunch of other resources)
+    # sales_order: addComment, cancel, hold, info, list, unhold
 
-    magento.sales_order.help() # 'sales_order' is a resource. 'list' is a method. 
+    magento.sales_order.help() # 'sales_order' is a resource.
+    # sales_order: Order API
+    #   - addComment: Add comment to order
+    #   - cancel: Cancel order
+    #   - hold: Hold order
+    #   - info: Retrieve order information
+    #   - list: Retrieve list of orders by filters
+    #   - unhold: Unhold order
 
-    # Let's add up sales subtotals!
+    # Let's list sales and add their subtotals!
     orders = magento.sales_order.list()
     subtotals = [order["subtotal"] for order in orders]
     revenue = sum(subtotals)
@@ -39,9 +48,9 @@ for docs on the usage of specific methods.
 Quick IPython Shell
 -------------------
 
-The Magento API is massive and difficult to use. If you need to use it
-in some production capacity, you'll want to jump into a shell frequently
-and muck around with inputs and stare at outputs.
+The Magento API is massive and takes effort to grok. If you need to use
+it in some production capacity, you'll want to jump into a shell
+frequently and muck around with inputs and stare at outputs.
 
 ``magento-ipython-shell`` will drop you into an IPython shell that has a
 variable bound to a MagentoAPI object that is ready for use.
@@ -55,7 +64,7 @@ Here's how to launch it:
 
 ::
 
-    > magento-ipython-shell mymagentoserver.com 80 test_api_user test_api_key
+    > magento-ipython-shell localhost.com 8888 api_user api_key
 
     -- magento-ipython-shell -----------------
     Connecting to 'http://localhost.com:8888/magento/api/xmlrpc'
