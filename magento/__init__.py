@@ -8,14 +8,20 @@ class MagentoAPI(object):
     def __init__(self, host, port, api_user, api_key, path=None, verbose=False):
         """Logs the client into Magento's API and discovers methods available
         to it. Throws an exception if logging in fails."""
-
         if path is None:
             path = MagentoAPI.PATH
+        self._uri = "http://%s:%s" % (host, str(port)) + path
+        self._api_user = api_user
+        self._api_key = api_key
 
-        uri = "http://%s:%s" % (host, str(port)) + path
-        self._client = xmlrpclib.ServerProxy(uri, verbose=verbose)
-        self._session_id = self._client.login(api_user, api_key)
-        self._discover()
+        self._client = xmlrpclib.ServerProxy(self._uri, verbose=verbose)
+        self.login()
+
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, type, value, traceback):
+        self.end_session()
 
     def _discover(self):
         """Discovers methods in the XML-RPC API and creates attributes for them
@@ -46,6 +52,13 @@ class MagentoAPI(object):
             return self._resources[name]
         else:
             raise AttributeError
+
+    def login(self):
+        self._session_id = self._client.login(self._api_user, self._api_key)
+        self._discover()
+
+    def end_session(self):
+        self._client.endSession(self._session_id)
 
     def resources(self):
         """Calls the 'resources' Magento API method. From the Magento docs:
