@@ -10,9 +10,11 @@ class MagentoAPI(object):
         to it. Throws an exception if logging in fails."""
         if path is None:
             path = MagentoAPI.PATH
-        self._uri = "http://%s:%s" % (host, str(port)) + path
         self._api_user = api_user
         self._api_key = api_key
+        self._host = host
+        self._port = str(port)
+        self._uri = "http://%s:%s" % (self._host, self._port) + path
 
         self._client = xmlrpclib.ServerProxy(self._uri, verbose=verbose)
         self.login()
@@ -89,6 +91,18 @@ class MagentoAPI(object):
         for name in sorted(self._resources.keys()):
             methods = sorted(self._resources[name]._methods.keys())
             print "%s: %s" % (bold(name), ", ".join(methods))
+
+    def get_host(self):
+        return self._host
+    
+    def get_port(self):
+        return self._port
+    
+    def get_api_user(self):
+        return self._api_user
+    
+    def get_api_key(self):
+        return self._api_key
 
 class MagentoResource(object):
     def __init__(self, client, session_id, name, title, methods):
