@@ -21,6 +21,7 @@ def main():
     parser.add_argument("port", type=int, help="The Magento server port.")
     parser.add_argument("api_user", help="The API user to log in as.")
     parser.add_argument("api_key", help="The API key to log in with.")
+    parser.add_argument("-p", "--path", help="The URL path to your instance's XML-RPC API.")
     parser.add_argument("-v", "--verbose", action="store_true", 
                         help="Set the XML-RPC client to verbose.")
         
@@ -31,10 +32,12 @@ def main():
         "port": args.port,
         "api_user": args.api_user,
         "api_key": args.api_key,
+        "path": args.path,
         "verbose": args.verbose
     }
 
-    url = "http://%s:%d" % (args.host, args.port) + MagentoAPI.PATH
+    path = args.path if args.path else MagentoAPI.PATH
+    url = "http://%s:%d" % (args.host, args.port) + path
 
     print
     print
