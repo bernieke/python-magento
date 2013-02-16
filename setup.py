@@ -8,7 +8,7 @@ requires = []
 
 setup(
     name='python-magento',
-    version='0.3.0',
+    version='0.3.1',
     author='Vikram Oberoi',
     author_email='voberoi@gmail.com',
     packages=['magento'],

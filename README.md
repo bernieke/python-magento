@@ -1,7 +1,7 @@
 # python-magento
 
 This is a simple Python interface to Magento's XML-RPC API. The API discovers and
-makes all of Magento's API methods available to you by discovery.
+makes all of Magento's API methods available to you.
 
 ## Usage
 
@@ -36,9 +36,9 @@ json_description_of_possible_global_exceptions = magento.global_faults()
 json_description_of_possible_resource_exceptions = magento.resource_faults("sales_order")
 ```
 
-The API discovers and makes all of Magento's API methods available to you by
-discovery. The best way to learn how to use the API is to play around with it in
-a Python shell and refer back to the [Magento API documentation](http://www.magentocommerce.com/api/soap/introduction.html) for docs on the usage of specific methods.
+The API discovers and makes all of Magento's API methods available to you. The
+best way to learn how to use the API is to play around with it in a Python shell
+and refer back to the [Magento API documentation](http://www.magentocommerce.com/api/soap/introduction.html) for docs on the usage of specific methods.
 
 ## Quick IPython Shell
 
