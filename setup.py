@@ -8,7 +8,7 @@ requires = []
 
 setup(
     name='python-magento',
-    version='0.3.2',
+    version='0.3.3',
     author='Vikram Oberoi',
     author_email='voberoi@gmail.com',
     packages=['magento'],
@@ -23,7 +23,7 @@ setup(
     description='A Python wrapper to Magento\'s XML-RPC API.',
     long_description=open('README.rst').read(),
     classifiers=(
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
