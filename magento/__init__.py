@@ -62,6 +62,16 @@ class MagentoAPI(object):
     def end_session(self):
         self._client.endSession(self._session_id)
 
+    def keep_session_alive(self):
+        """If the session expired, logs back in."""
+        try:
+            self.resources()
+        except xmlrpclib.Fault as fault:
+            if fault.faultCode == 5:
+                self.login()
+            else:
+                raise
+
     def resources(self):
         """Calls the 'resources' Magento API method. From the Magento docs:
         
