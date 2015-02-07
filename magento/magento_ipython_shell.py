@@ -7,9 +7,9 @@ from magento import MagentoAPI
 try:
     from IPython import embed
 except:
-    print "You must have IPython installed to use this shell. Try"
-    print "'pip install ipython', 'easy_install ipython' , or head"
-    print "over to ipython.org."
+    print("You must have IPython installed to use this shell. Try")
+    print("'pip install ipython', 'easy_install ipython' , or head")
+    print("over to ipython.org.")
     sys.exit(1)
 
 def main():
@@ -41,14 +41,14 @@ def main():
 
     print
     print
-    print "-- magento-ipython-shell -----------------"
-    print "Connecting to '%s'" % url
-    print "Using API user/key %s/%s" % (args.api_user, args.api_key)
+    print("-- magento-ipython-shell -----------------")
+    print("Connecting to '%s'" % url)
+    print("Using API user/key %s/%s" % (args.api_user, args.api_key))
     magento = MagentoAPI(**endpoint)
-    print "Connected! The 'magento' variable is bound to a usable MagentoAPI instance."
-    print "-- magento-ipython-shell -----------------"
-    print
-    print
+    print("Connected! The 'magento' variable is bound to a usable MagentoAPI instance.")
+    print("-- magento-ipython-shell -----------------")
+    print("")
+    print("")
     embed() # Shell time!
 
 if __name__ == "__main__":

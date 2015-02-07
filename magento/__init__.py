@@ -1,4 +1,7 @@
-import xmlrpclib
+try:
+    import xmlrpclib
+except ImportError:
+    import xmlrpc.client as xmlrpclib
 
 __all__ = ["MagentoAPI"]
 
@@ -96,11 +99,11 @@ class MagentoAPI(object):
     def help(self):
         """Prints discovered resources and their associated methods. Nice when 
         noodling in the terminal to wrap your head around Magento's insanity."""
-        print "Resources:"
-        print
+        print("Resources:")
+        print("")
         for name in sorted(self._resources.keys()):
             methods = sorted(self._resources[name]._methods.keys())
-            print "%s: %s" % (bold(name), ", ".join(methods))
+            print("%s: %s" % (bold(name), ", ".join(methods)))
 
     def get_host(self):
         return self._host
@@ -138,9 +141,9 @@ class MagentoResource(object):
         return call_method
 
     def help(self):
-        print "%s: %s" % (bold(self._name), self._title)
+        print("%s: %s" % (bold(self._name), self._title))
         for method in sorted(self._methods.keys()):
-            print "  - %s: %s" % (bold(method), self._methods[method]["title"])
+            print("  - %s: %s" % (bold(method), self._methods[method]["title"]))
 
 # Some text formatting stuff for the shell.
 def bold(text):
