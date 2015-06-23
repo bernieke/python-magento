@@ -6,7 +6,7 @@ except ImportError:
 __all__ = ["MagentoAPI"]
 
 class MagentoAPI(object):
-    PATH = "/magento/api/xmlrpc"
+    PATH = "/api/xmlrpc"
 
     def __init__(self, host, port, api_user, api_key, path=None, allow_none=False, verbose=False):
         """Logs the client into Magento's API and discovers methods available
