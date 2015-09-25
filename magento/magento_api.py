@@ -17,14 +17,23 @@ def bold(text):
     return u'\033[1m%s\033[0m' % text
 
 
-class MagentoTransport(xmlrpclib.Transport):
-    """Magento XMLRPClib Transport."""
-
+class MagentoTransportMixin(object):
     def send_content(self, connection, request_body):
         # OWASP ModSecurity Core Rule Set (CRS) Project / cPanel mod_security
         #   blocks requests that lack an accept header, so add one here
         connection.putheader('Accept', 'application/xml')
-        xmlrpclib.Transport.send_content(self, connection, request_body)
+        super(MagentoTransportMixin, self).send_content(
+            connection, request_body)
+
+
+class MagentoSafeTransport(MagentoTransportMixin, xmlrpclib.SafeTransport):
+    """Magento XMLRPClib Safe Transport."""
+    pass
+
+
+class MagentoTransport(MagentoTransportMixin, xmlrpclib.Transport):
+    """Magento XMLRPClib Transport."""
+    pass
 
 
 class MagentoAPI(object):
@@ -41,9 +50,14 @@ class MagentoAPI(object):
         self._port = str(port)
         self._uri = '{}://{}:{}/{}'.format(proto, host, port, path.strip('/'))
 
+        if proto == 'https':
+            transport = MagentoSafeTransport()
+        else:
+            transport = MagentoTransport()
+
         self._client = xmlrpclib.ServerProxy(
             self._uri, allow_none=allow_none, verbose=verbose,
-            transport=MagentoTransport())
+            transport=transport)
         self.login()
 
     def __enter__(self):
