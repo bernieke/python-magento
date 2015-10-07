@@ -1,7 +1,9 @@
-v0.1.0, 2/13/2013 -- Initial release.
+v0.1.0, 2013/2/13 -- Initial release.
 
-v0.2.0, 2/13/2013 -- Docs. Extra methods.
+v0.2.0, 2013/2/13 -- Docs. Extra methods.
 
-v1.0.0, 11/7/2015 -- Python 3 compatibility.
+v1.0.0, 2015/7/11 -- Python 3 compatibility.
 
-v1.0.1, 25/9/2015 -- Fix https regression.
+v1.0.1, 2015/9/25 -- Fix https regression.
+
+v1.0.2, 2015/10/7 -- Fix python2 regression.

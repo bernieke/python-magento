@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='python-magento',
-    version='1.0.1',
+    version='1.0.2',
     author='Vikram Oberoi',
     author_email='voberoi@gmail.com',
     maintainer='Bernard Kerckenaere',

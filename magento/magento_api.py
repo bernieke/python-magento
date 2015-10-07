@@ -18,6 +18,10 @@ def bold(text):
 
 
 class MagentoTransportMixin(object):
+
+    def __init__(self, *args, **kwargs):
+        super(MagentoTransportMixin, self).__init__(*args, **kwargs)
+
     def send_content(self, connection, request_body):
         # OWASP ModSecurity Core Rule Set (CRS) Project / cPanel mod_security
         #   blocks requests that lack an accept header, so add one here
@@ -26,12 +30,12 @@ class MagentoTransportMixin(object):
             connection, request_body)
 
 
-class MagentoSafeTransport(MagentoTransportMixin, xmlrpclib.SafeTransport):
+class MagentoSafeTransport(xmlrpclib.SafeTransport, MagentoTransportMixin):
     """Magento XMLRPClib Safe Transport."""
     pass
 
 
-class MagentoTransport(MagentoTransportMixin, xmlrpclib.Transport):
+class MagentoTransport(xmlrpclib.Transport, MagentoTransportMixin):
     """Magento XMLRPClib Transport."""
     pass
 
