@@ -199,6 +199,10 @@ class MagentoResource(object):
         path = '.'.join([self._name, method_name])
 
         def call_method(*args, **kwargs):
+            # If we don't have a list of arguments, pass a dictionary.
+            if not args:
+                args = kwargs
+
             return self._client.call(self._session_id, path, args)
         return call_method
 
