@@ -30,7 +30,7 @@ def main():
                         help='The URL path to the XML-RPC API.')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='Set the XML-RPC client to verbose.')
-
+    parser.add_argument ('--proto', default='http', help='Choose between http or https')
     args = parser.parse_args()
 
     url = 'http://{}:{}/{}'.format(args.host, args.port, args.path.strip('/'))
@@ -40,7 +40,7 @@ def main():
     print('Using API user/key {}/{}'.format(args.api_user, args.api_key))
 
     magento = MagentoAPI(args.host, args.port, args.api_user, args.api_key,
-                         path=args.path, verbose=args.verbose)
+                         path=args.path, verbose=args.verbose, proto=args.proto)
     assert magento
 
     print('Connected! The "magento" variable is bound to a usable MagentoAPI '
