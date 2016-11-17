@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='python-magento',
-    version='1.0.2',
+    version='1.0.3',
     author='Vikram Oberoi',
     author_email='voberoi@gmail.com',
     maintainer='Bernard Kerckenaere',
@@ -17,12 +17,12 @@ setup(
     packages=['magento'],
     install_requires=[],
     extras_require={
-        'interactive-shell': ['ipython'],
+        'interactive_shell': ['ipython'],
     },
     entry_points={
         'console_scripts': [
             'magento-ipython-shell = '
-            'magento.magento_ipython_shell:main [interactive-shell]',
+            'magento.magento_ipython_shell:main [interactive_shell]',
         ],
     },
     url='https://github.com/bernieke/python-magento',
