@@ -3,6 +3,8 @@
 This is a simple Python interface to Magento's XML-RPC API. The API discovers and
 makes all of Magento's API methods available to you.
 
+Note that this is only for magento 1, for magento 2 you would need a different library!
+
 ## Usage
 
 ```python
